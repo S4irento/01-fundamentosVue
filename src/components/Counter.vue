@@ -13,7 +13,10 @@
       "title": String,
       "start": {
         type: Number,
-        default: 0
+        default: 0,
+        validator(value){
+          return value <= 100;
+        }
       }
     },
     data(){
@@ -26,9 +29,11 @@
       increase(){
         this.counter++;
       },
-      /** @method: decrementa el valor en 1 */
+      /** @method: decrementa el valor en 1 solamente cuando el valor sea mayor a 0*/
       decrease(){
-        this.counter--;
+        if(this.counter > 0){
+          this.counter--;
+        }
       }
     },
     computed: {
