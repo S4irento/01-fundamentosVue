@@ -23,10 +23,15 @@ export default {
   },
   methods: {
     async getAnswer(){
-      this.answer = "Procesando...";
-      const {answer, image} = await fetch('https://yesno.wtf/api').then(r => r.json());
-      this.answer = answer.toUpperCase();
-      this.img = image;
+      try{
+        this.answer = "Procesando...";
+        const {answer, image} = await fetch('https://yesno.wtf/api').then(r => r.json());
+        this.answer = answer.toUpperCase();
+        this.img = image;
+      }catch(e){
+        this.answer = "Fallo en al API";
+        this.img = null;
+      }
     }
   },
   watch: {
